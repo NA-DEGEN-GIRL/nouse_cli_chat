@@ -1,0 +1,1 @@
+API_KEY = "nous_api_key_here"  # 여기에 넣기

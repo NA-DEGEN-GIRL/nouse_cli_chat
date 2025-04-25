@@ -1,0 +1,5 @@
+**gpt**
+.venv/
+__pycache__/
+api_key.py
+chat_logs/
