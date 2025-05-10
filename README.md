@@ -1,5 +1,69 @@
 # Nous Chat CLI
 
+## Introduction
+
+**Nous Chat CLI** is a Python-based chatting application that allows you to freely converse with an AI chatbot in a terminal (command-line) environment, and save/manage your conversation history. It works with OpenAI-compatible chatbot APIs, providing features such as loading previous conversations, saving, and exiting.
+
+## Features
+
+- Real-time conversation with the AI chatbot
+- Save and load conversation logs (sessions) by name
+- Easy conversation management and exit
+- Conversation logs stored as JSON files
+
+## Installation & Setup
+
+1. **Install dependencies**
+   ```bash
+   pip install requests
+   ```
+
+2. **Prepare your API key**
+   - Create a file named `api_key.py` in the project root and write your API key as follows:
+     ```python
+     API_KEY = '[YOUR_API_KEY]'
+     ```
+
+## Usage
+
+1. Run the following command in your terminal:
+   ```bash
+   python main.py
+   ```
+
+2. Select the number for the desired feature after the menu appears:
+   - **Start New Chat:** Start a new conversation session.
+   - **Load Existing Chat:** Load and continue a previously saved conversation.
+   - **Exit:** Exit the program.
+
+3. While chatting, enter `exit` or `quit` to end and automatically save the conversation.
+
+## Conversation Logs
+
+- All chats are stored in the `chat_logs/` directory in JSON format.
+- Filenames are based on the name you enter at the start of the session, managed separately per session.
+
+## Notes
+
+- Internet connection is required.
+- API usage may incur charges, so please check your API service’s policy.
+
+## Example Menu
+
+```
+=== Nous Chat CLI ===
+1. 🆕 Start New Chat
+2. 📂 Load Existing Chat
+3. ❌ Exit
+Select option number:
+```
+
+## License
+
+This project is free to modify and use.
+
+# Nous Chat CLI
+
 ## 소개
 
 **Nous Chat CLI**는 터미널(커맨드라인) 환경에서 AI 챗봇과 자유롭게 대화할 수 있고, 대화 내역을 저장·관리할 수 있는 Python 기반 대화 애플리케이션입니다. OpenAI 호환 챗봇 API와 연동되며, 이전 대화 불러오기, 저장, 종료 등의 기능을 제공합니다.

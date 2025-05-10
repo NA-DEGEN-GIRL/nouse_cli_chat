@@ -25,11 +25,11 @@ def list_chats():
     return sorted(files)
 
 def chat_loop(messages, chat_name):
-    print("💬 대화를 시작하세요. 'exit' 입력 시 종료됩니다.\n")
+    print("💬 Start chatting. Type 'exit' to quit.\n")
     while True:
         user_input = input("👤 You: ")
         if user_input.lower() in {"exit", "quit"}:
-            print("👋 대화를 종료합니다.\n")
+            print("👋 Ending the chat.\n")
             save_chat(chat_name, messages)
             break
 
@@ -52,14 +52,14 @@ def chat_loop(messages, chat_name):
 def main_menu():
     while True:
         print("\n=== Nous Chat CLI ===")
-        print("1. 🆕 새 대화 시작")
-        print("2. 📂 기존 대화 불러오기")
-        print("3. ❌ 종료")
+        print("1. 🆕 Start New Chat")
+        print("2. 📂 Load Existing Chat")
+        print("3. ❌ Exit")
 
-        choice = input("번호 선택: ")
+        choice = input("Select option number: ")
 
         if choice == "1":
-            name = input("새 대화 이름 입력: ").strip()
+            name = input("Enter a name for the new chat: ").strip()
             messages = [
                 {"role": "system", "content": "You are a helpful assistant."}
             ]
@@ -68,24 +68,24 @@ def main_menu():
         elif choice == "2":
             chats = list_chats()
             if not chats:
-                print("❗ 저장된 대화가 없습니다.")
+                print("❗ No chat logs found.")
                 continue
-            print("\n📄 저장된 대화 목록:")
+            print("\n📄 Saved chats:")
             for i, c in enumerate(chats):
                 print(f"{i + 1}. {c}")
-            idx = input("불러올 대화 번호 선택: ")
+            idx = input("Select the number to load a chat: ")
             if not idx.isdigit() or int(idx) < 1 or int(idx) > len(chats):
-                print("❗ 올바른 번호를 입력하세요.")
+                print("❗ Please enter a valid number.")
                 continue
             name = chats[int(idx) - 1]
             messages = load_chat(name)
             chat_loop(messages, name)
 
         elif choice == "3":
-            print("👋 종료합니다.")
+            print("👋 Exiting.")
             break
         else:
-            print("❗ 잘못된 입력입니다.")
+            print("❗ Invalid input.")
 
 if __name__ == "__main__":
     main_menu()
