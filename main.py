@@ -48,6 +48,29 @@ def chat_loop(messages, chat_name):
         print(f"🤖 Bot: {reply}\n")
         messages.append({"role": "assistant", "content": reply})
 
+def scripted_chat(messages, chat_name, prompts):
+    print("🤖 Scripted chat started.\n")
+    while 1:
+        for user_input in prompts:
+            print(f"👤 You: {user_input}")
+            messages.append({"role": "user", "content": user_input})
+
+            data = {
+                "model": "Hermes-3-Llama-3.1-70B",
+                "messages": messages,
+                "temperature": 0.7,
+                "max_tokens": 512
+            }
+
+            response = requests.post(URL, headers=HEADERS, json=data)
+            res = response.json()
+            reply = res["choices"][0]["message"]["content"]
+            print(f"🤖 Bot: {reply}\n")
+            messages.append({"role": "assistant", "content": reply})
+
+    save_chat(chat_name, messages)
+    print("✅ Scripted chat finished and saved.\n")
+
 
 def main_menu():
     while True:
@@ -55,6 +78,7 @@ def main_menu():
         print("1. 🆕 Start New Chat")
         print("2. 📂 Load Existing Chat")
         print("3. ❌ Exit")
+        print("4. 🤖 Run scripted chat")  # 추가된 옵션
 
         choice = input("Select option number: ")
 
@@ -84,6 +108,22 @@ def main_menu():
         elif choice == "3":
             print("👋 Exiting.")
             break
+
+        elif choice == "4":
+            name = input("Enter a name for the scripted chat: ").strip()
+            messages = [
+                {"role": "system", "content": "You are a helpful assistant."}
+            ]
+            # 여기에 자동 입력할 문장 리스트를 지정하세요(예시)
+            prompts = [
+                "Give a fun python code",
+                "convert it to nodejs",
+                "convert it to rust",
+                "convert it to c++",
+                "make it more fun and complicated",
+            ]
+            scripted_chat(messages, name, prompts)
+
         else:
             print("❗ Invalid input.")
 
