@@ -183,7 +183,7 @@ def ai_vs_ai_chat(chat_name, first_prompt=None, num_turns=10, history_depth=3):
                 response = requests.post(URL, headers=HEADERS1, json={
                     "model": "Hermes-3-Llama-3.1-405B",
                     "messages": messages,
-                    "temperature": 0.7,
+                    "temperature": 0.8,
                     "max_tokens": 750
                 })
                 try:
@@ -211,7 +211,7 @@ def ai_vs_ai_chat(chat_name, first_prompt=None, num_turns=10, history_depth=3):
                 response = requests.post(URL, headers=HEADERS2, json={
                     "model": "Hermes-3-Llama-3.1-405B",
                     "messages": messages,
-                    "temperature": 0.7,
+                    "temperature": 0.9,
                     "max_tokens": 750
                 })
                 try:
